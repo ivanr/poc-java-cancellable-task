@@ -1,0 +1,10 @@
+This repository contains a proof of concept implementation of tasks
+that can be interrupted more robustly. The root problem here is that
+not all Java classes detect interruption and sometimes need to be
+helped; for example an underlying socket could be closed. Because
+executors by default don't support this functionality, we need to do
+a little dance to make it possible.
+
+In the nutshell, tasks need to implement CancellableCallable and then
+run using CancellableExecutor. The remaining classes are used for
+plumbing.
