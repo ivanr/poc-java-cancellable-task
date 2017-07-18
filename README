@@ -5,6 +5,6 @@ helped; for example an underlying socket could be closed. Because
 executors by default don't support this functionality, we need to do
 a little dance to make it possible.
 
-In the nutshell, tasks need to implement CancellableCallable and then
+In a nutshell, tasks need to implement CancellableCallable and then
 run using CancellableExecutor. The remaining classes are used for
 plumbing.
