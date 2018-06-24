@@ -21,7 +21,7 @@ public class FutureCancellableTask extends FutureTask {
         // and help it better respond to the actual interruption, which will follow.
         try {
             task.cancel();
-        } catch(Throwable t) {
+        } catch (Throwable t) {
             // Not doing anything in this PoC, but it might
             // be a good idea to log this exception.
         }

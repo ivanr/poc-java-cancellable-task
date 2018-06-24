@@ -46,7 +46,7 @@ public class CancellableTask implements CancellableCallable<Boolean> {
                 System.out.println(this + " SLEEPING " + sleepTime + " ms");
                 Thread.sleep(sleepTime);
             }
-        } catch(InterruptedException e) {
+        } catch (InterruptedException e) {
             // We're catching InterruptedException here just to print
             // the message, normally you wouldn't need to do this.
             System.out.println(this + " INTERRUPTED");

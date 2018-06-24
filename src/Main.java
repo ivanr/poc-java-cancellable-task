@@ -21,13 +21,17 @@ public class Main {
 
         try {
             Thread.sleep(1_000);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+            // Ignoring.
+        }
 
         f.cancel(true);
 
         try {
             Thread.sleep(1_000);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+            // Ignoring.
+        }
 
         exec.shutdownNow();
     }

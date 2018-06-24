@@ -9,13 +9,13 @@ public class CancellableExecutor extends ThreadPoolExecutor {
     private Set<CancellableCallable> cancellableCallables = Collections.synchronizedSet(new HashSet<>());
 
     public CancellableExecutor(int poolSize) {
-        super(poolSize,poolSize, Long.MAX_VALUE, TimeUnit.DAYS, new LinkedBlockingQueue<>());
+        super(poolSize, poolSize, Long.MAX_VALUE, TimeUnit.DAYS, new LinkedBlockingQueue<>());
     }
 
     @Override
     protected RunnableFuture newTaskFor(Callable callable) {
         if (callable instanceof CancellableCallable) {
-            return new FutureCancellableTask((CancellableCallable)callable);
+            return new FutureCancellableTask((CancellableCallable) callable);
         } else {
             return super.newTaskFor(callable);
         }
