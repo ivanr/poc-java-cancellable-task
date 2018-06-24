@@ -19,3 +19,20 @@ Here's what we do:
 NOTE: This PoC implements a generic solution. However, another approach that
       is simpler, is to subclass Thread and override interrupt(), then do
       all the cancellation work there. No need to mess with the executors.
+      
+TIPS: Things you might wish to do to support more robust interruption:
+
+      - In your code, periodically check for interruption and stop the task.
+
+      - Close java.io and java.nio sockets.
+      
+      - Close selector blocked on Selector.select.
+      
+      - Don't use intrinsic locks, use Lock instead.
+      
+      - In your task, in the cancel() method implementation, set a
+        flag and remember the cancellation. Elsewhere in your code where
+        you maybe get exceptions that were caused by the cancellation,
+        you can check this flag to detect this situation (and maybe
+        throw an InterruptedException).
+      
