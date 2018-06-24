@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+idea {
+    project {
+        languageLevel = '1.8'
+    }
+
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+sourceSets {
+    main {
+        java.srcDirs = ["src/"]
+    }
+}
