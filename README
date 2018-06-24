@@ -1,10 +1,17 @@
-This repository contains a proof of concept implementation of tasks
-that can be interrupted more robustly. The root problem here is that
-not all Java classes detect interruption and sometimes need to be
-helped; for example an underlying socket could be closed. Because
-executors by default don't support this functionality, we need to do
-a little dance to make it possible.
+This repository contains a proof of concept implementation of an
+executor service that supports running tasks that can be interrupted
+more robustly. The problem we need to solve is that not all Java classes
+and operations support interruption. Thus, tasks need to be helped, for
+example by closing sockets that are in use and so on.
 
-In a nutshell, tasks need to implement CancellableCallable and then
-run using CancellableExecutor. The remaining classes are used for
-plumbing.
+Here's what we do:
+
+- We create CancellableCallable, which is a task that can be cancelled.
+
+- We create FutureCancellableTask, which knows how to propagate the
+  cancellation requests to the CancellableCallable it's connected with.
+  
+- We create CancellableExecutor, which not only supports the use of the
+  above classes, but also keeps track of which tasks are running, and
+  cancels them when shutdownNow() is now.
+  
