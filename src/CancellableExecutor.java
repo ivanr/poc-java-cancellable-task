@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -5,7 +6,7 @@ import java.util.concurrent.*;
 
 public class CancellableExecutor extends ThreadPoolExecutor {
 
-    private Set<CancellableCallable> cancellableCallables = new HashSet<>();
+    private Set<CancellableCallable> cancellableCallables = Collections.synchronizedSet(new HashSet<>());
 
     public CancellableExecutor(int poolSize) {
         super(poolSize,poolSize, Long.MAX_VALUE, TimeUnit.DAYS, new LinkedBlockingQueue<>());
