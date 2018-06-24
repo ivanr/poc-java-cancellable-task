@@ -15,3 +15,7 @@ Here's what we do:
   above classes, but also keeps track of which tasks are running, and
   cancels them when shutdownNow() is now.
   
+
+NOTE: This PoC implements a generic solution. However, another approach that
+      is simpler, is to subclass Thread and override interrupt(), then do
+      all the cancellation work there. No need to mess with the executors.
